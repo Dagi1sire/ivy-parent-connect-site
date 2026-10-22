@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IVY Parent Connect — Official Android App for IVY Childcare Services</title>
+  <meta name="description"
+    content="Download the official IVY Parent Connect Android APK directly. Stay informed with real-time bilingual announcements (English & Amharic), event RSVPs, and notice board updates.">
+
+  <!-- Open Graph & Twitter SEO -->
+  <meta property="og:title" content="IVY Parent Connect — Official Direct APK Download">
+  <meta property="og:description"
+    content="Communication and announcement platform for IVY Childcare Services with event calendars, RSVPs, and bilingual support.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Ambient Particle Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Ambient Glowing Radial Orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- ==========================================================================
+       1. Navigation Bar
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container nav-content">
+      <a href="#" class="brand-logo">
+        <img src="assets/logo.svg" alt="IVY Parent Connect Logo" class="logo-icon">
+        <span class="brand-title">IVY <span>Connect</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#bilingual">Bilingual Demo</a></li>
+        <li><a href="#install">How to Install</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="lang-toggle-btn" title="Toggle English / Amharic">
+          <span>🌐</span>
+          <span>EN / አማርኛ</span>
+        </button>
+        <a href="https://github.com/Dagi1sire/app-releases/releases/latest/download/app.apk"
+          class="btn-nav-download trigger-apk-download">
+          <span>📥 Download APK</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. Hero Section
+       ========================================================================== -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+
+      <!-- Hero Left: Content -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>✨</span> Official App for IVY Childcare Services
+        </div>
+
+        <h1 class="hero-title">
+          Stay Connected with Your Child's Journey at <span class="highlight">IVY</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Instant bilingual announcements, event RSVPs, digital notice board, and teacher updates — directly on your
+          Android phone.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="https://github.com/Dagi1sire/app-releases/releases/latest/download/app.apk" id="btn-main-download"
+            class="btn-primary-download trigger-apk-download">
+            <span class="btn-icon">📥</span> Direct Download APK
+          </a>
+          <button id="btn-open-qr" class="btn-secondary-qr">
+            <span>📱</span> Scan QR Code
+          </button>
+        </div>
+
+        <div class="download-meta-info">
+          <span>🛡️ Verified & Secure</span>
+          <span>•</span>
+          <span>🤖 Android 8.0+</span>
+          <span>•</span>
+          <span>📦 ~15 MB (<span data-apk-version>v1.0.13</span>)</span>
+        </div>
+      </div>
+
+      <!-- Hero Right: Interactive 3D Phone Mockup -->
+      <div class="hero-phone-wrapper">
+        <div class="phone-glow-effect"></div>
+
+        <div class="phone-frame">
+          <div class="phone-notch">
+            <div class="camera-lens"></div>
+          </div>
+
+          <div class="phone-screen">
+            <!-- App Header Mock -->
+            <div class="app-header-mock">
+              <div class="app-brand-mini">
+                <img src="assets/logo.svg" alt="IVY Icon">
+                <span>IVY Parent Connect</span>
+              </div>
+              <button class="phone-lang-switch">EN</button>
+            </div>
+
+            <!-- Urgent Announcement Card Mockup -->
+            <div class="phone-card urgent">
+              <div class="phone-card-tag urgent-tag">
+                🚨 <span class="phone-card-tag-text">Urgent Announcement</span>
+              </div>
+              <div class="phone-card-title">
+                Parent-Teacher Meeting & Field Trip RSVP
+              </div>
+              <div class="phone-card-body">
+                Please confirm attendance for Friday's Science Museum trip by 4:00 PM.
+              </div>
+              <div class="phone-card-actions">
+                <button class="phone-btn-mini phone-btn-rsvp">Confirm RSVP</button>
+                <button class="phone-btn-mini phone-btn-ack">Acknowledge</button>
+              </div>
+            </div>
+
+            <!-- Regular Notice Card Mockup -->
+            <div class="phone-card">
+              <div class="phone-card-tag" style="background: rgba(44, 116, 183, 0.2); color: #6EB1E3;">
+                📢 General Update
+              </div>
+              <div class="phone-card-title">
+                Weekly Lunch Menu & Activities
+              </div>
+              <div class="phone-card-body">
+                The updated weekly menu for all departments is now available on the resources tab.
+              </div>
+            </div>
+
+            <!-- Calendar Preview Card -->
+            <div class="phone-card" style="border-color: rgba(76, 175, 80, 0.3);">
+              <div class="phone-card-tag" style="background: rgba(46, 125, 50, 0.2); color: #4CAF50;">
+                📅 Upcoming Event
+              </div>
+              <div class="phone-card-title">
+                Cultural Celebration Day — Nov 24
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Notification Pill Overlay -->
+        <div class="floating-notif-pill">
+          <div class="icon">🔔</div>
+          <div>
+            <div class="text">New Notice Received</div>
+            <div class="subtext">Just now • IVY Childcare</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. Trust Stats Section
+       ========================================================================== -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number green" data-count="100" data-suffix="%">0%</div>
+          <div class="stat-label">Parent Satisfaction</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-count="2" data-suffix=" Languages">0</div>
+          <div class="stat-label">English & Amharic Support</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number gold" data-count="0" data-suffix="ms">0</div>
+          <div class="stat-label">Push Notification Latency</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number green" data-count="100" data-suffix="%">0%</div>
+          <div class="stat-label">Offline Room Database Caching</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. Key Features Section
+       ========================================================================== -->
+  <section id="features" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Designed for Parents</span>
+        <h2 class="section-title">Everything You Need to Stay Informed</h2>
+        <p class="section-subtitle">A modern, secure, and intuitive mobile app tailored specifically for IVY Childcare
+          Services parents and guardians.</p>
+      </div>
+
+      <div class="features-grid">
+
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">📢</div>
+          <h3 class="feature-card-title">Real-Time FCM Push Notices</h3>
+          <p class="feature-card-desc">Receive urgent announcements and important school updates immediately on your
+            phone lock screen with Firebase Cloud Messaging.</p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card green">
+          <div class="feature-icon-box">📅</div>
+          <h3 class="feature-card-title">Event Calendar & 1-Tap RSVPs</h3>
+          <p class="feature-card-desc">Never miss a field trip, holiday, or parent-teacher meeting. Confirm your child's
+            RSVP status in seconds.</p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card gold">
+          <div class="feature-icon-box">🇪TH</div>
+          <h3 class="feature-card-title">Bilingual English & Amharic</h3>
+          <p class="feature-card-desc">Full native localization in English and Amharic (አማርኛ). Switch languages anytime
+            with a single tap in the app.</p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">📌</div>
+          <h3 class="feature-card-title">Digital Notice Board</h3>
+          <p class="feature-card-desc">Access weekly menus, class schedules, policy documents, and newsletters organized
+            by department.</p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card green">
+          <div class="feature-icon-box">⚡</div>
+          <h3 class="feature-card-title">Offline-First Room Sync</h3>
+          <p class="feature-card-desc">Built with Android Room DB. View all previously loaded announcements, saved
+            events, and schedules even without internet access.</p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card gold">
+          <div class="feature-icon-box">📲</div>
+          <h3 class="feature-card-title">Home Screen Notice Widget</h3>
+          <p class="feature-card-desc">Install the official Android glance widget on your home screen to see the latest
+            announcement at a single glance.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. Interactive Bilingual Demonstration Section
+       ========================================================================== -->
+  <section id="bilingual" class="section-padding" style="background: rgba(11, 25, 44, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Native Localization</span>
+        <h2 class="section-title">Seamless English & Amharic Experience</h2>
+        <p class="section-subtitle">Experience how IVY Parent Connect effortlessly delivers clear communication in your
+          preferred language.</p>
+      </div>
+
+      <div class="bilingual-demo-box">
+        <div class="demo-controls-bar">
+          <div>
+            <h3 class="demo-card-title-text" style="font-size: 1.1rem; color: var(--text-brand);">Select Language
+              Preview</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Click to toggle live content translation</p>
+          </div>
+          <div class="demo-lang-selector">
+            <button class="demo-lang-btn active" data-lang="en">English</button>
+            <button class="demo-lang-btn" data-lang="am">አማርኛ (Amharic)</button>
+          </div>
+        </div>
+
+        <!-- Live Demo Announcement Card -->
+        <div class="demo-card-preview">
+          <div class="demo-card-header">
+            <span class="demo-badge-urgent">🚨 Urgent Notice</span>
+            <span class="demo-card-time">Today at 9:00 AM</span>
+          </div>
+          <h4 class="demo-card-title-text">Closure Announcement</h4>
+          <p class="demo-card-body-text">
+            Dear Parents, Due to the current weather conditions and the safety of our children, school will be closed
+            tomorrow, November 24th.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. Installation Guide Section
+       ========================================================================== -->
+  <section id="install" class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Quick Setup</span>
+        <h2 class="section-title">How to Install in 3 Easy Steps</h2>
+        <p class="section-subtitle">Direct APK installation onto your Android device in less than a minute.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3 class="step-title">Download APK File</h3>
+          <p class="step-desc">Click the "Direct Download APK" button on this page to download
+            <code>IVY-Parent-Connect.apk</code> to your phone.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3 class="step-title">Allow Unknown Sources</h3>
+          <p class="step-desc">When prompted by Chrome or your browser, tap <strong>Settings</strong> and enable "Allow
+            from this source".</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3 class="step-title">Open & Connect</h3>
+          <p class="step-desc">Tap <strong>Install</strong>, launch IVY Connect, sign in with your parent account, and
+            stay connected!</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 48px;">
+        <a href="https://github.com/Dagi1sire/app-releases/releases/latest/download/app.apk"
+          class="btn-primary-download trigger-apk-download" style="display: inline-flex;">
+          <span class="btn-icon">📥</span> Download APK Direct (<span data-apk-version>v1.0.13</span>)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. FAQ Section
+       ========================================================================== -->
+  <section id="faq" class="section-padding" style="background: rgba(11, 25, 44, 0.4);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Frequently Asked Questions</span>
+        <h2 class="section-title">Have Questions? We Have Answers</h2>
+      </div>
+
+      <div class="faq-accordion">
+
+        <div class="faq-item active">
+          <button class="faq-question">
+            <span>Is downloading the APK directly safe?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes! The APK is built and cryptographically packaged directly from our official open-source GitHub
+            repository for IVY Childcare Services. It contains zero ads and is scanned for security.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Which Android versions are supported?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            IVY Parent Connect supports Android 8.0 (Oreo) and above (API level 26+), covering over 98% of active
+            Android devices.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How do I switch the language to Amharic?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            You can toggle between English and Amharic anytime directly inside the app profile screen or using the
+            language switch icon at the top of the app bar.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How will I receive future updates?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            The app features built-in update checking. Whenever a new version is released, you will receive an in-app
+            notice with a 1-tap update button.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. Footer
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="#" class="brand-logo">
+          <img src="assets/logo.svg" alt="IVY Logo" class="logo-icon">
+          <span class="brand-title">IVY <span>Connect</span></span>
+        </a>
+
+        <div style="display: flex; gap: 20px;">
+          <a href="https://github.com/Dagi1sire/app-releases" target="_blank"
+            style="color: var(--text-muted); text-decoration: none;">GitHub Releases</a>
+          <a href="https://github.com/Dagi1sire/app-releases/releases/latest/download/app.apk"
+            class="trigger-apk-download"
+            style="color: var(--ivy-navy-light); text-decoration: none; font-weight: 700;">Direct APK Link</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        ©
+        <script>document.write(new Date().getFullYear())</script> IVY Childcare Services. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       9. QR Code Modal Window
+       ========================================================================== -->
+  <div id="qr-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button id="btn-close-qr" class="modal-close-btn">&times;</button>
+      <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800;">Scan to Install APK</h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 6px;">Point your phone camera at this QR code
+        to open the direct APK download link.</p>
+
+      <div class="qr-code-frame">
+        <svg viewBox="0 0 200 200" width="180" height="180">
+          <!-- Stylized QR Code Placeholder SVG -->
+          <rect width="200" height="200" fill="#FFFFFF" />
+          <!-- Position Detection Patterns -->
+          <rect x="10" y="10" width="50" height="50" fill="#0F172A" />
+          <rect x="20" y="20" width="30" height="30" fill="#FFFFFF" />
+          <rect x="25" y="25" width="20" height="20" fill="#2C74B7" />
+
+          <rect x="140" y="10" width="50" height="50" fill="#0F172A" />
+          <rect x="150" y="20" width="30" height="30" fill="#FFFFFF" />
+          <rect x="155" y="25" width="20" height="20" fill="#2C74B7" />
+
+          <rect x="10" y="140" width="50" height="50" fill="#0F172A" />
+          <rect x="20" y="150" width="30" height="30" fill="#FFFFFF" />
+          <rect x="25" y="155" width="20" height="20" fill="#2E7D32" />
+
+          <!-- QR Data Modules -->
+          <rect x="70" y="10" width="10" height="10" fill="#0F172A" />
+          <rect x="90" y="10" width="20" height="10" fill="#0F172A" />
+          <rect x="70" y="30" width="20" height="10" fill="#2C74B7" />
+          <rect x="100" y="30" width="20" height="20" fill="#0F172A" />
+          <rect x="70" y="60" width="10" height="30" fill="#2E7D32" />
+          <rect x="90" y="70" width="30" height="10" fill="#0F172A" />
+          <rect x="130" y="70" width="20" height="20" fill="#2C74B7" />
+          <rect x="160" y="70" width="20" height="10" fill="#0F172A" />
+          <rect x="10" y="70" width="30" height="10" fill="#0F172A" />
+          <rect x="30" y="90" width="20" height="20" fill="#2E7D32" />
+          <rect x="70" y="100" width="20" height="20" fill="#0F172A" />
+          <rect x="100" y="100" width="30" height="10" fill="#2C74B7" />
+          <rect x="140" y="100" width="20" height="30" fill="#0F172A" />
+          <rect x="70" y="130" width="30" height="10" fill="#0F172A" />
+          <rect x="110" y="130" width="20" height="20" fill="#2E7D32" />
+          <rect x="170" y="130" width="10" height="30" fill="#0F172A" />
+          <rect x="70" y="150" width="20" height="20" fill="#2C74B7" />
+          <rect x="100" y="160" width="30" height="10" fill="#0F172A" />
+          <rect x="140" y="150" width="40" height="10" fill="#0F172A" />
+          <rect x="150" y="170" width="20" height="20" fill="#2E7D32" />
+        </svg>
+      </div>
+
+      <div style="margin-top: 16px;">
+        <a href="https://github.com/Dagi1sire/app-releases/releases/latest/download/app.apk"
+          class="btn-primary-download trigger-apk-download" style="justify-content: center; width: 100%;">
+          <span>📥 Direct Download APK</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+
+</html>

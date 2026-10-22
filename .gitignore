@@ -1,0 +1,12 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencies and logs (in case you add a build step later)
+node_modules/
+*.log
+
+# Local environment files
+.env
