@@ -40,7 +40,7 @@
 
   /* Layout Constants */
   --max-width: 1240px;
-  --nav-height: 80px;
+  --nav-height: 72px;
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 24px;
@@ -64,6 +64,9 @@ html {
   font-size: 16px;
   background-color: var(--bg-dark);
   color: var(--text-main);
+  /* Prevent iOS text size adjust after orientation change */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -223,6 +226,101 @@ body {
   align-items: center;
   gap: 32px;
   list-style: none;
+}
+
+/* ============================================================
+   Hamburger Menu Button (mobile only)
+   ============================================================ */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-glass-pill);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-main);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile Drawer Nav */
+.mobile-nav-drawer {
+  display: none;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  width: 100%;
+  background: rgba(7, 15, 30, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-glass);
+  z-index: 99;
+  padding: 24px;
+  flex-direction: column;
+  gap: 8px;
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.mobile-nav-drawer.open {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav-drawer a {
+  display: block;
+  padding: 14px 16px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.mobile-nav-drawer a:hover,
+.mobile-nav-drawer a:active {
+  background: rgba(255,255,255,0.07);
+  color: var(--text-main);
+}
+
+.mobile-nav-drawer .mobile-nav-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, var(--ivy-green) 0%, #1B5E20 100%);
+  color: #FFF;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  box-shadow: 0 6px 20px var(--ivy-green-glow);
 }
 
 .nav-links a {
@@ -1185,41 +1283,207 @@ body {
 }
 
 /* ==========================================================================
-   Responsive Breakpoints
+   Responsive Breakpoints — Mobile-First
    ========================================================================== */
+
+/* ── Tablet: ≤ 992px ─────────────────────────────────────────────────────── */
 @media (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 48px;
     text-align: center;
   }
   .hero-content {
     align-items: center;
   }
   .hero-title {
-    font-size: 2.8rem;
+    font-size: clamp(2rem, 5vw, 2.8rem);
   }
   .features-grid, .steps-grid, .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .nav-links {
-    display: none; /* Mobile menu fallback */
+  /* Hide desktop nav links; show hamburger */
+  .nav-links,
+  .btn-nav-download { display: none; }
+  .hamburger-btn { display: flex; }
+  .mobile-nav-drawer { display: flex; }
+
+  /* Phone mockup — slightly smaller on tablet */
+  .phone-frame {
+    width: 270px;
+    height: 540px;
   }
+
+  /* Floating pill stays visible */
+  .floating-notif-pill {
+    right: -10px;
+  }
+
+  /* Bilingual demo controls wrap on tablet */
+  .demo-controls-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .demo-lang-selector { align-self: stretch; }
+  .demo-lang-btn { flex: 1; text-align: center; }
+
+  /* Reduce section vertical padding */
+  .section-padding { padding: 72px 0; }
 }
 
+/* ── Mobile: ≤ 640px ─────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .hero-title {
-    font-size: 2.2rem;
+  /* Container horizontal padding */
+  .container { padding: 0 16px; }
+
+  /* Reduce nav height */
+  :root { --nav-height: 64px; }
+
+  /* Hero */
+  .hero-section {
+    padding-top: calc(var(--nav-height) + 36px);
+    padding-bottom: 60px;
+    min-height: auto;
   }
-  .features-grid, .steps-grid, .stats-grid {
-    grid-template-columns: 1fr;
+  .hero-title {
+    font-size: clamp(1.75rem, 7vw, 2.2rem);
+    letter-spacing: -0.02em;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 28px;
+  }
+  .hero-badge {
+    font-size: 0.78rem;
+    padding: 6px 14px;
   }
   .hero-cta-group {
     flex-direction: column;
     width: 100%;
+    gap: 12px;
   }
-  .btn-primary-download, .btn-secondary-qr {
+  .btn-primary-download {
     width: 100%;
     justify-content: center;
+    padding: 15px 24px;
+    font-size: 1rem;
   }
+  .btn-secondary-qr {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+  .download-meta-info {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.8rem;
+  }
+
+  /* Phone mockup: hide on very small screens to save space */
+  .hero-phone-wrapper {
+    display: none;
+  }
+
+  /* Section padding */
+  .section-padding { padding: 56px 0; }
+  .section-header { margin-bottom: 40px; }
+  .section-title { font-size: clamp(1.5rem, 6vw, 2rem); }
+  .section-subtitle { font-size: 0.95rem; }
+
+  /* Grids: single column */
+  .features-grid, .steps-grid, .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Feature cards */
+  .feature-card { padding: 24px 20px; }
+  .feature-card-title { font-size: 1.1rem; }
+
+  /* Stats */
+  .stats-section { padding: 36px 0; }
+  .stat-number { font-size: 2.2rem; }
+  .stat-label { font-size: 0.85rem; }
+  .stat-card { padding: 20px 16px; }
+
+  /* Bilingual demo */
+  .bilingual-demo-box { padding: 24px 16px; }
+
+  /* Install steps */
+  .step-card { padding: 24px 20px; }
+  .step-number { font-size: 2.2rem; top: 14px; right: 16px; }
+  .step-title { font-size: 1.1rem; }
+
+  /* FAQ */
+  .faq-question { padding: 18px 20px; font-size: 1rem; }
+  .faq-answer { padding: 0 20px; }
+  .faq-item.active .faq-answer { padding-bottom: 18px; }
+
+  /* Footer */
+  .footer-content { flex-direction: column; align-items: flex-start; }
+
+  /* Modal */
+  .modal-box { padding: 28px 20px; }
+
+  /* Reduce orb size on mobile for performance */
+  .orb-1, .orb-2, .orb-3 {
+    width: 280px;
+    height: 280px;
+    filter: blur(60px);
+  }
+}
+
+/* ── Extra-small: ≤ 380px ────────────────────────────────────────────────── */
+@media (max-width: 380px) {
+  .hero-title { font-size: 1.6rem; }
+  .brand-title { font-size: 1.05rem; }
+  .logo-icon { width: 34px; height: 34px; }
+}
+
+/* ── Sticky Mobile Download Bar ──────────────────────────────────────────── */
+/* Appears at the bottom on mobile when user scrolls past the hero CTA */
+.mobile-sticky-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 200;
+  padding: 12px 16px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  background: rgba(7, 15, 30, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-glass);
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-sticky-bar.visible {
+  transform: translateY(0);
+}
+
+.mobile-sticky-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, var(--ivy-green) 0%, #1B5E20 100%);
+  color: #FFF;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  box-shadow: 0 6px 24px var(--ivy-green-glow);
+}
+
+@media (max-width: 640px) {
+  .mobile-sticky-bar { display: block; }
+  /* Add bottom padding to page so sticky bar doesn't overlap content */
+  body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
 }

@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initQrModal();
   initFaqAccordion();
   initStatsCounter();
+  initHamburgerMenu();
+  initStickyBar();
 });
 
 /* --------------------------------------------------------------------------
@@ -360,4 +362,57 @@ function initStatsCounter() {
       }, 30);
     });
   }
+/* --------------------------------------------------------------------------
+   8. Hamburger Navigation Menu (Mobile)
+   -------------------------------------------------------------------------- */
+function initHamburgerMenu() {
+  const btn = document.getElementById('hamburger-btn');
+  const drawer = document.getElementById('mobile-nav-drawer');
+  if (!btn || !drawer) return;
+
+  function closeDrawer() {
+    btn.classList.remove('open');
+    drawer.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = btn.classList.toggle('open');
+    drawer.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+    // Prevent body scroll when drawer is open
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close drawer when any link inside it is tapped
+  drawer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeDrawer);
+  });
+
+  // Close on outside tap
+  document.addEventListener('click', (e) => {
+    if (!btn.contains(e.target) && !drawer.contains(e.target)) {
+      closeDrawer();
+    }
+  });
+}
+
+/* --------------------------------------------------------------------------
+   9. Sticky Mobile Download Bar
+   -------------------------------------------------------------------------- */
+function initStickyBar() {
+  const bar = document.getElementById('mobile-sticky-bar');
+  const heroCta = document.getElementById('btn-main-download');
+  if (!bar || !heroCta) return;
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      // Show bar when the hero CTA is out of view (user scrolled past it)
+      bar.classList.toggle('visible', !entry.isIntersecting);
+    },
+    { threshold: 0, rootMargin: '-60px 0px 0px 0px' }
+  );
+
+  observer.observe(heroCta);
 }
